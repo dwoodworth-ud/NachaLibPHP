@@ -1,7 +1,8 @@
 ## Create NACHA files in PHP
 
 Supports debit (collecting money from others) and credit (transferring money to others) transactions.
-If you need more functionality, I'm available for contract work at sparrish@nodeping.com
+
+Originally developed by sparrish@nodeping.com.
 
 ## Usage:
 
