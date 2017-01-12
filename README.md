@@ -56,3 +56,5 @@ try{
 ```
 
 Copyright 2012 sparrish@nodeping.com
+
+Modified by jeremib@gmail.com
