@@ -7,6 +7,10 @@
         {
             "name": "Jeremi Bergman",
             "email": "jeremib@gmail.com"
+        },
+        {
+            "name": "David Woodworth",
+            "email": "dwoodworth@urldigital.com"
         }
     ],
     "autoload": {

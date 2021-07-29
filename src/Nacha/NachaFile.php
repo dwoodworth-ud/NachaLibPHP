@@ -41,6 +41,8 @@ class NachaFile {
     private $filemodifier ='A';
     private $originatingBank;
     private $companyName;
+    private $headerCompanyName;
+    private $batchCompanyName;
     private $scc = '200';
     private $sec = 'PPD';
     private $description = 'PAYMENT';
@@ -152,6 +154,22 @@ class NachaFile {
 
     public function setCompanyName($companyName){
         $this->companyName = $companyName;
+        if (!isset($this->headerCompanyName)) {
+            $this->headerCompanyName = $companyName;
+        }
+        if (!isset($this->batchCompanyName)) {
+            $this->headerCompanyName = $companyName;
+        }
+        return $this;
+    }
+
+    public function setHeaderCompanyName($companyName){
+        $this->headerCompanyName = $companyName;
+        return $this;
+    }
+
+    public function setBatchCompanyName($companyName){
+        $this->batchCompanyName = $companyName;
         return $this;
     }
 
@@ -229,13 +247,13 @@ class NachaFile {
     }
 
     private function createFileHeader(){
-        $this->fileHeader = '101 '.$this->bankrt.$this->fileId.date('ymdHi').$this->filemodifier.$this->recordsize.$this->blockingfactor.$this->formatcode.$this->formatText($this->originatingBank,23).$this->formatText($this->companyName,23).$this->formatText($this->referencecode,8);
+        $this->fileHeader = '101 '.$this->bankrt.$this->fileId.date('ymdHi').$this->filemodifier.$this->recordsize.$this->blockingfactor.$this->formatcode.$this->formatText($this->originatingBank,23).$this->formatText($this->headerCompanyName,23).$this->formatText($this->referencecode,8);
         if(strlen($this->fileHeader) == 94) $this->validFileHeader = true;
         return $this;
     }
 
     private function createBatchHeader(){
-        $this->batchHeader = '5'.$this->scc.$this->formatText($this->companyName,16).$this->formatText($this->batchInfo,20).$this->companyId.$this->sec.$this->formatText($this->description,10).$this->formatText($this->descriptionDate,6).$this->entryDate.'   1'.substr($this->bankrt,0,8).$this->formatNumeric($this->batchNumber,7);
+        $this->batchHeader = '5'.$this->scc.$this->formatText($this->batchCompanyName,16).$this->formatText($this->batchInfo,20).$this->companyId.$this->sec.$this->formatText($this->description,10).$this->formatText($this->descriptionDate,6).$this->entryDate.'   1'.substr($this->bankrt,0,8).$this->formatNumeric($this->batchNumber,7);
         if(strlen($this->batchHeader) == 94) $this->validBatchHeader = true;
         return $this;
     }
