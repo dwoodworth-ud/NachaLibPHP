@@ -25,6 +25,8 @@
 
 namespace Nacha;
 
+use Exception;
+
 class NachaFile {
 
     private $fileId;
@@ -158,7 +160,7 @@ class NachaFile {
             $this->headerCompanyName = $companyName;
         }
         if (!isset($this->batchCompanyName)) {
-            $this->headerCompanyName = $companyName;
+            $this->batchCompanyName = $companyName;
         }
         return $this;
     }
