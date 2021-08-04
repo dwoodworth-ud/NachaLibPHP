@@ -15,7 +15,9 @@ $nacha->setBankRT('123456789')// Your bank's routing number
       ->setFileID('9876543210')// Probably the same as your Company ID but your bank will tell you what this should be.
       ->setOriginatingBank('BANK ON IT')// Text name of your bank
       ->setFileModifier('A')// Usually just A - for the first file of the day.  Change to 'B' for second file of the day and so on.
-      ->setCompanyName('MY COMPANY')//16 chars - your company name
+      ->setCompanyName('MY COMPANY')//REQUIRED - 16 chars - your company name. Sets HeaderCompanyName and BatchCompanyName to this value.
+      ->setHeaderCompanyName('MY COMPANY')//OPTIONAL - 16 chars - your company name. Used to specify a different company name for File header.
+      ->setBatchCompanyName('MY COMPANY')//OPTIONAL - 16 chars - your company name Used to specify a different company name for Batch header.
       ->setBatchInfo('Monthly Subscriptions') // Text description for the batch
       ->setDescription('Subscription', '05/17/2012') // Description shown on customers statements and date of invoice
       ->setEntryDate(date('m/d/Y')); // The day you want the payments to be processed. This example shows today.
